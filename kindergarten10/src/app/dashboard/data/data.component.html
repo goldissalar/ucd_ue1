@@ -18,11 +18,11 @@
         <button mat-raised-button color="warn" (click)="cancelRegistration(child.id)">Kind abmelden</button>
       </div>
     </div>
-  
-    <div class="mat-row">
-      <div class="mat-cell col-12 d-flex justify-content-center">
-        <button mat-button [ngClass]="page == currentPage ? 'active' : ''" (click)="selectPage(page)" *ngFor="let page of returnAllPages()">{{page}}</button>
-      </div>
-    </div>
+    <mat-paginator
+  [pageSize]="2"
+  [length]="storeService.childrenTotalCount"
+  (page)="selectPage($event.pageIndex + 1)"
+></mat-paginator>
   </div>
   
+

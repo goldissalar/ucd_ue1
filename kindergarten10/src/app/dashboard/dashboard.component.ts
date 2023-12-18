@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
   public currentPage: number = 1;
@@ -16,5 +16,4 @@ export class DashboardComponent {
   toggleButtonClicked(showAddData: boolean) {
     this.showAddData = showAddData;
   }
-
 }

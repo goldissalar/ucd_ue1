@@ -104,21 +104,9 @@
     },
     {
       "name": "test",
-      "kindergardenId": 2,
-      "birthDate": "2017-02-10T23:00:00.000Z",
-      "id": "87zIlmX"
-    },
-    {
-      "name": "test",
       "kindergardenId": 4,
       "birthDate": "2017-06-05T22:00:00.000Z",
       "id": "w7rbqSH"
-    },
-    {
-      "name": "test",
-      "kindergardenId": 1,
-      "birthDate": "2017-06-06T22:00:00.000Z",
-      "id": "3wAw0T2"
     },
     {
       "name": "test",
@@ -191,6 +179,12 @@
       "kindergardenId": 4,
       "birthDate": "2016-07-20T22:00:00.000Z",
       "id": "jxA1Ub1"
+    },
+    {
+      "name": "eeeee",
+      "kindergardenId": 3,
+      "birthDate": "2017-06-08T22:00:00.000Z",
+      "id": "-6uxQU3"
     }
   ],
   "kindergardens": [
