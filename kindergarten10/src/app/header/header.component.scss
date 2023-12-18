@@ -1,0 +1,16 @@
+mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px; 
+
+    img.logo {
+        margin-left: 20px;
+        max-height: 100%; 
+        width: auto; 
+    }
+
+    .spacer {
+        flex: 1;
+    }
+}
