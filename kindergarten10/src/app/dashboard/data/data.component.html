@@ -3,6 +3,7 @@
     <mat-form-field appearance="fill" style="min-width: 600px;">
       <mat-label>Nach Kindergarten filtern</mat-label>
       <mat-select [(ngModel)]="selectedKindergarden" (ngModelChange)="onSelect()">
+        <mat-option value="0">All anzeigen</mat-option>
         <mat-option *ngFor="let kindergarden of storeService.kindergardens" [value]="kindergarden.id">
           {{kindergarden.name}}
         </mat-option>
