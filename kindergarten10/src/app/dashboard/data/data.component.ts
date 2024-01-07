@@ -22,12 +22,14 @@ export class DataComponent implements OnInit {
 
   ngOnInit(): void {
     this.backendService.filterChildren(this.currentPage, this.selectedKindergarden, this.sortColumn, this.sortOrder);
+    console.log("init");
   }
 
   sort(column: string) {
+    this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+    console.log("sort");
     this.sortColumn = column;
     this.backendService.filterChildren(this.currentPage, this.selectedKindergarden, this.sortColumn, this.sortOrder);
-    this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
   }
 
   getAge(birthDate: string) {
