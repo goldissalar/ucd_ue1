@@ -14,17 +14,17 @@
     </div>
   </div>
 <form [formGroup]="addChildForm" (ngSubmit)="onSubmit()">
-    <h2>Ihr Kind anmelden!</h2>
-
-    <mat-form-field appearance="fill">
+    <div class="content">
+      <h2>Ihr Kind anmelden!</h2>
+      <mat-form-field appearance="fill">
         <mat-label>Name</mat-label>
         <input matInput placeholder="Name" formControlName="name">
         <mat-error *ngIf="addChildForm.get('name').hasError('required')">Name ist erforderlich</mat-error>
         <mat-error *ngIf="addChildForm.get('name').hasError('maxlength')">Maximal 50 Zeichen erlaubt</mat-error>
         <mat-error *ngIf="addChildForm.get('name').hasError('minlength')">Mindestens 3 Zeichen benötigt</mat-error>
-    </mat-form-field>
+      </mat-form-field>
 
-    <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill">
         <mat-label>Geburtsdatum</mat-label>
         <input matInput [matDatepicker]="picker" placeholder="Geburtsdatum" formControlName="birthDate">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -32,17 +32,18 @@
         <mat-error *ngIf="addChildForm.get('birthDate').hasError('required')">Geburtsdatum ist erforderlich</mat-error>
         <mat-error *ngIf="addChildForm.get('birthDate').hasError('futureDate')">Datum kann nicht in der Zukunft liegen</mat-error>
         <mat-error *ngIf="addChildForm.get('birthDate').hasError('ageRange')">Mindestalter von 5 Jahren erforderlich, maximal 18 Jahre erlaubt</mat-error>
-    </mat-form-field>
+      </mat-form-field>
 
-    <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill">
         <mat-label>Kindergarten auswählen</mat-label>
         <mat-select formControlName="kindergardenId">
-            <mat-option *ngFor="let kindergarden of storeService.kindergardens" [value]="kindergarden.id">
-                {{kindergarden.name}}, {{kindergarden.address}}
-            </mat-option>
+          <mat-option *ngFor="let kindergarden of storeService.kindergardens" [value]="kindergarden.id">
+            {{kindergarden.name}}, {{kindergarden.address}}
+          </mat-option>
         </mat-select>
         <mat-error *ngIf="addChildForm.get('kindergardenId').hasError('required')">Kindergarten ist
-            erforderlich</mat-error>
-    </mat-form-field>
-    <button mat-raised-button color="primary" type="submit">Erfassen</button>
+          erforderlich</mat-error>
+      </mat-form-field>
+      <button mat-raised-button class="primary-color" type="submit">Erfassen</button>
+    </div>
 </form>

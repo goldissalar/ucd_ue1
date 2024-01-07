@@ -2,15 +2,19 @@ mat-toolbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 16px; 
+    padding: 0 16px;
 
     img.logo {
-        margin-left: 20px;
-        max-height: 100%; 
-        width: auto; 
+        margin-right: 20px;
+        max-height: 100%;
+        width: auto;
     }
 
     .spacer {
         flex: 1;
     }
+}
+.primary-color {
+  background-color: rgba(103,58,183, 0.8);
+  color: white;
 }
