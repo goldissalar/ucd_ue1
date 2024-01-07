@@ -30,6 +30,20 @@ export class BackendService {
       });
   }
 
+  public filterChildren(page: number, kindergardenId: number) {
+    this.http
+      .get<ChildResponse[]>(
+        `http://localhost:5000/childs?_expand=kindergarden&_page=${page}&_limit=${CHILDREN_PER_PAGE}&kindergardenId=${kindergardenId}`,
+        { observe: 'response' }
+      )
+      .subscribe((data) => {
+        this.storeService.children = data.body!;
+        console.log(data);
+        this.storeService.childrenTotalCount = Number(data.headers.get('X-Total-Count'));
+        this.storeService.isLoading = false;
+      });
+  }
+
   public addChildData(child: Child, page: number) {
     this.http.post('http://localhost:5000/childs', child).subscribe((_) => {
       this.getChildren(page);

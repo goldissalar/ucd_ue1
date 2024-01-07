@@ -1,5 +1,13 @@
 <h1> Anmeldungen Übersichtsseite </h1>
 <div class="container">
+    <mat-form-field appearance="fill" style="min-width: 600px;">
+      <mat-label>Nach Kindergarten filtern</mat-label>
+      <mat-select [(ngModel)]="selectedKindergarden" (ngModelChange)="onSelect()">
+        <mat-option *ngFor="let kindergarden of storeService.kindergardens" [value]="kindergarden.id">
+          {{kindergarden.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
     <div class="mat-header-row">
       <p class="mat-cell col-xl-1 col-lg-2">Kind Name</p>
       <p class="mat-cell col-xl-4 col-lg-3">Kindergarten Name</p>
