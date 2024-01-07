@@ -16,9 +16,18 @@ export class DataComponent implements OnInit {
   public page: number = 0;
   selectedKindergarden: any;
   filteredChildren: any[] = [];
+  sortOrder: 'asc' | 'desc' = 'asc';
+  sortColumn: string = 'name';
+
 
   ngOnInit(): void {
-    this.backendService.getChildren(this.currentPage);
+    this.backendService.filterChildren(this.currentPage, this.selectedKindergarden, this.sortColumn, this.sortOrder);
+  }
+
+  sort(column: string) {
+    this.sortColumn = column;
+    this.backendService.filterChildren(this.currentPage, this.selectedKindergarden, this.sortColumn, this.sortOrder);
+    this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
   }
 
   getAge(birthDate: string) {
@@ -36,13 +45,7 @@ export class DataComponent implements OnInit {
     console.log("select page "+ i);
     this.currentPage = i;
     this.selectPageEvent.emit(this.currentPage);
-
-    if (!!this.selectedKindergarden) {
-      this.backendService.filterChildren(this.currentPage, this.selectedKindergarden);
-    } else {
-      this.backendService.getChildren(this.currentPage);
-    }
-
+    this.backendService.filterChildren(this.currentPage, this.selectedKindergarden, this.sortColumn, this.sortOrder);
   }
 
   cancelRegistration(childId: string) {
@@ -52,7 +55,7 @@ export class DataComponent implements OnInit {
   onSelect(): void {
     console.log(this.selectedKindergarden);
     this.selectPage(0);
-    this.backendService.filterChildren(this.currentPage, this.selectedKindergarden);
+    this.backendService.filterChildren(this.currentPage, this.selectedKindergarden, this.sortColumn, this.sortOrder);
     this.resetPaginator();
   }
 

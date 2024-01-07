@@ -30,33 +30,31 @@ export class BackendService {
       });
   }
 
-  public filterChildren(page: number, kindergardenId: number) {
-    if (!kindergardenId || kindergardenId == 0) {
-      this.http
-        .get<ChildResponse[]>(
-          `http://localhost:5000/childs?_expand=kindergarden&_page=${page}&_limit=${CHILDREN_PER_PAGE}`,
-          { observe: 'response' }
-        )
-        .subscribe((data) => {
-          this.storeService.children = data.body!;
-          console.log(data);
-          this.storeService.childrenTotalCount = Number(data.headers.get('X-Total-Count'));
-          this.storeService.isLoading = false;
-        });
-    } else  {
-      this.http
-        .get<ChildResponse[]>(
-          `http://localhost:5000/childs?_expand=kindergarden&_page=${page}&_limit=${CHILDREN_PER_PAGE}&kindergardenId=${kindergardenId}`,
-          { observe: 'response' }
-        )
-        .subscribe((data) => {
-          this.storeService.children = data.body!;
-          console.log(data);
-          this.storeService.childrenTotalCount = Number(data.headers.get('X-Total-Count'));
-          this.storeService.isLoading = false;
-        });
-    }
+  public filterChildren(page: number, kindergardenId: number, sort: string, sortOrder: string) {
 
+    let filter = '';
+    if (!!kindergardenId && kindergardenId != 0) {
+      filter += `&kindergardenId=${kindergardenId}`;
+    }
+    if (!!sort) {
+      filter += `&_sort=${sort}`;
+      if (!!sortOrder) {
+        filter += `&_order=${sortOrder}`;
+      }
+    }
+    console.log(filter);
+
+    this.http
+      .get<ChildResponse[]>(
+        `http://localhost:5000/childs?_expand=kindergarden&_page=${page}${filter}&_limit=${CHILDREN_PER_PAGE}`,
+        { observe: 'response' }
+      )
+      .subscribe((data) => {
+        this.storeService.children = data.body!;
+        console.log(data);
+        this.storeService.childrenTotalCount = Number(data.headers.get('X-Total-Count'));
+        this.storeService.isLoading = false;
+      });
   }
 
   public addChildData(child: Child, page: number) {
