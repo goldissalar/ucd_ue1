@@ -33,6 +33,7 @@ export class AddDataComponent implements OnInit {
       this.addChildForm.value.creationDate = new Date();
       this.backendService.addChildData(this.addChildForm.value, this.currentPage);
       this.showNotification = true;
+      this.addChildForm.reset();
       this.router.navigate([], { queryParams: { page: this.currentPage } });
     }
   }
