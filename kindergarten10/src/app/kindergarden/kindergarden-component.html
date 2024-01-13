@@ -1,0 +1,35 @@
+<h1> Kindergärten Übersichtsseite </h1>
+<div class="container">
+  <div class="mat-header-row">
+    <p class="mat-cell col-xl-2 col-lg-2">Name</p>
+    <p class="mat-cell col-xl-3 col-lg-3">Adresse</p>
+    <p class="mat-cell col-xl-3 col-lg-3">Betreiber</p>
+    <p class="mat-cell col-xl-1 col-lg-1">Typ</p>
+    <p class="mat-cell col-xl-1 col-lg-1"></p>
+  </div>
+
+  <div *ngFor="let kindergarden of storeService.kindergardens" class="mat-row">
+    <p class="mat-cell col-xl-2 col-lg-2">{{kindergarden.name}}</p>
+    <p class="mat-cell col-xl-3 col-lg-3">{{kindergarden.address}}</p>
+    <p class="mat-cell col-xl-3 col-lg-3">{{kindergarden.betreiber}}</p>
+    <p class="mat-cell col-xl-1 col-lg-1">{{getType(kindergarden.typ)}}</p>
+    <p class="mat-cell col-xl-1 col-lg-1"><button class="detail" mat-icon-button (click)="showDetails(kindergarden.id)">
+      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="expand_more"></mat-icon>
+    </button>
+    </p>
+
+  </div>
+
+  <div *ngIf="!!showDetailPage">
+    <div class="container">
+      <h2> Kindergarten Detailseite - {{selectedKindergarden.name}} </h2>
+      <div class="row row-cols-1 gy-3">
+        <div class="col"><strong>Adresse:</strong> {{ selectedKindergarden.address }}</div>
+        <div class="col"><strong>Betreiber:</strong> {{ selectedKindergarden.betreiber }}</div>
+        <div class="col"><strong>Typ:</strong> {{ getType(selectedKindergarden.typ) }}</div>
+        <img [src]="'../../assets/images/kindergarden-' + selectedKindergarden.id + '.jpg'" class="d-block w-100" alt="...">
+        <img [src]="'../../assets/images/kindergarden-' + selectedKindergarden.id + '-' + selectedKindergarden.id + '.jpg'" class="d-block w-100" alt="...">
+      </div>
+    </div>
+  </div>
+</div>

@@ -18,11 +18,11 @@ export class DataComponent implements OnInit {
   filteredChildren: any[] = [];
   sortOrder: 'asc' | 'desc' = 'asc';
   sortColumn: string = 'name';
+  public showNotification = false;
 
 
   ngOnInit(): void {
     this.backendService.filterChildren(this.currentPage, this.selectedKindergarden, this.sortColumn, this.sortOrder);
-    console.log("init");
   }
 
   sort(column: string) {
@@ -31,7 +31,6 @@ export class DataComponent implements OnInit {
     } else {
       this.sortOrder = 'asc';
     }
-    console.log("sort");
     this.sortColumn = column;
     this.backendService.filterChildren(this.currentPage, this.selectedKindergarden, this.sortColumn, this.sortOrder);
   }
@@ -48,7 +47,6 @@ export class DataComponent implements OnInit {
   }
 
   selectPage(i: any) {
-    console.log("select page "+ i);
     this.currentPage = i;
     this.selectPageEvent.emit(this.currentPage);
     this.backendService.filterChildren(this.currentPage, this.selectedKindergarden, this.sortColumn, this.sortOrder);
@@ -56,10 +54,14 @@ export class DataComponent implements OnInit {
 
   cancelRegistration(childId: string) {
     this.backendService.deleteChildData(childId, this.currentPage);
+    this.showNotification = true;
+  }
+
+  closeModal() {
+    this.showNotification = false;
   }
 
   onSelect(): void {
-    console.log(this.selectedKindergarden);
     this.selectPage(0);
     this.backendService.filterChildren(this.currentPage, this.selectedKindergarden, this.sortColumn, this.sortOrder);
     this.resetPaginator();

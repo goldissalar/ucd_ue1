@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StoreService } from './shared/store.service';
 import { BackendService } from './shared/backend.service';
+import {Kindergarden} from "./shared/interfaces/Kindergarden";
 
 @Component({
   selector: 'app-root',

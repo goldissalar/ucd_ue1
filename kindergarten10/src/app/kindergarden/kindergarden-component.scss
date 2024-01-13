@@ -42,22 +42,11 @@ h1 {
   background-color: #d32f2f;
   color: white;
 }
-
-.modal-content {
-  background-color: #28a745;
-  border-color: #28a745;
-  color: white;
+.detail {
+  color: rgba(103, 58, 183, 0.8);
 }
 
-.close {
-  border: none;
-  background: none;
-  color: white;
+h2 {
+  padding: 20px 0;
+  margin: 0;
 }
-
-@media (min-width: 1500px) {
-  .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
-    max-width: 1520px;
-  }
-}
-

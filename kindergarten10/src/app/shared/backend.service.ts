@@ -12,26 +12,15 @@ export class BackendService {
   constructor(private http: HttpClient, private storeService: StoreService) {}
 
   public getKindergardens() {
+    this.storeService.isLoading = true;
     this.http.get<Kindergarden[]>('http://localhost:5000/kindergardens').subscribe((data) => {
       this.storeService.kindergardens = data;
+      this.storeService.isLoading = false;
     });
   }
 
-  public getChildren(page: number) {
-    this.http
-      .get<ChildResponse[]>(
-        `http://localhost:5000/childs?_expand=kindergarden&_page=${page}&_limit=${CHILDREN_PER_PAGE}`,
-        { observe: 'response' }
-      )
-      .subscribe((data) => {
-        this.storeService.children = data.body!;
-        this.storeService.childrenTotalCount = Number(data.headers.get('X-Total-Count'));
-        this.storeService.isLoading = false;
-      });
-  }
-
   public filterChildren(page: number, kindergardenId: number, sort: string, sortOrder: string) {
-
+    this.storeService.isLoading = true;
     let filter = '';
     if (!!kindergardenId && kindergardenId != 0) {
       filter += `&kindergardenId=${kindergardenId}`;
@@ -42,7 +31,6 @@ export class BackendService {
         filter += `&_order=${sortOrder}`;
       }
     }
-    console.log(filter);
 
     this.http
       .get<ChildResponse[]>(
@@ -51,7 +39,6 @@ export class BackendService {
       )
       .subscribe((data) => {
         this.storeService.children = data.body!;
-        console.log(data);
         this.storeService.childrenTotalCount = Number(data.headers.get('X-Total-Count'));
         this.storeService.isLoading = false;
       });
@@ -64,8 +51,10 @@ export class BackendService {
   }
 
   public deleteChildData(childId: string, page: number) {
+    this.storeService.isLoading = true;
     this.http.delete(`http://localhost:5000/childs/${childId}`).subscribe((_) => {
       this.filterChildren(page, 0, 'name', 'asc');
+      this.storeService.isLoading = false;
     });
   }
 }

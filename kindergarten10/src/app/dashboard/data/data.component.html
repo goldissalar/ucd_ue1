@@ -1,3 +1,19 @@
+<div class="modal" tabindex="-1" role="dialog" [ngClass]="{'show': showNotification, 'd-block': showNotification}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Erfolgreich abgemeldet!</h5>
+        <button type="button" class="close" (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Ihr Kind wurde erfolgreich abgemeldet.
+      </div>
+    </div>
+  </div>
+</div>
+
 <h1> Anmeldungen Übersichtsseite </h1>
 <div class="container">
     <mat-form-field appearance="fill" style="min-width: 600px;">
@@ -10,9 +26,9 @@
       </mat-select>
     </mat-form-field>
     <div class="mat-header-row">
-      <p class="mat-cell col-xl-1 col-lg-2" (click)="sort('name')">Kind Name</p>
-      <p class="mat-cell col-xl-4 col-lg-3">Kindergarten Name</p>
-      <p class="mat-cell col-xl-1 col-lg-1">Adresse</p>
+      <p class="mat-cell col-xl-1 col-lg-1" (click)="sort('name')">Kind Name</p>
+      <p class="mat-cell col-xl-3 col-lg-3">Kindergarten Name</p>
+      <p class="mat-cell col-xl-2 col-lg-2">Adresse</p>
       <p class="mat-cell col-xl-1 col-lg-1">Alter</p>
       <p class="mat-cell col-xl-1 col-lg-1">Geburtsdatum</p>
       <p class="mat-cell col-xl-1 col-lg-1" (click)="sort('creationDate')">Anmeldedatum</p>
@@ -20,9 +36,9 @@
     </div>
 
     <div *ngFor="let child of storeService.children" class="mat-row">
-      <p class="mat-cell col-xl-1 col-lg-2">{{child.name}}</p>
-      <p class="mat-cell col-xl-4 col-lg-3">{{child.kindergarden.name}}</p>
-      <p class="mat-cell col-xl-1 col-lg-1">{{child.kindergarden.address}}</p>
+      <p class="mat-cell col-xl-1 col-lg-1">{{child.name}}</p>
+      <p class="mat-cell col-xl-3 col-lg-3">{{child.kindergarden.name}}</p>
+      <p class="mat-cell col-xl-2 col-lg-2">{{child.kindergarden.address}}</p>
       <p class="mat-cell col-xl-1 col-lg-1">{{getAge(child.birthDate)}}</p>
       <p class="mat-cell col-xl-1 col-lg-1">{{child.birthDate | date:'longDate'}}</p>
       <p class="mat-cell col-xl-1 col-lg-1">{{child.creationDate | date:'longDate'}}</p>
@@ -31,7 +47,7 @@
       </div>
     </div>
     <mat-paginator
-  [pageSize]="2"
+  [pageSize]="4"
   [length]="storeService.childrenTotalCount"
   (page)="selectPage($event.pageIndex + 1)"
 ></mat-paginator>
