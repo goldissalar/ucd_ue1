@@ -26,7 +26,11 @@ export class DataComponent implements OnInit {
   }
 
   sort(column: string) {
-    this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+    if (column == this.sortColumn) {
+      this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+    } else {
+      this.sortOrder = 'asc';
+    }
     console.log("sort");
     this.sortColumn = column;
     this.backendService.filterChildren(this.currentPage, this.selectedKindergarden, this.sortColumn, this.sortOrder);

@@ -11,11 +11,11 @@
     </mat-form-field>
     <div class="mat-header-row">
       <p class="mat-cell col-xl-1 col-lg-2" (click)="sort('name')">Kind Name</p>
-      <p class="mat-cell col-xl-4 col-lg-3" (click)="sort('kindergarden.name')">Kindergarten Name</p>
+      <p class="mat-cell col-xl-4 col-lg-3">Kindergarten Name</p>
       <p class="mat-cell col-xl-1 col-lg-1">Adresse</p>
       <p class="mat-cell col-xl-1 col-lg-1">Alter</p>
       <p class="mat-cell col-xl-1 col-lg-1">Geburtsdatum</p>
-      <p class="mat-cell col-xl-1 col-lg-1">Anmeldedatum</p>
+      <p class="mat-cell col-xl-1 col-lg-1" (click)="sort('creationDate')">Anmeldedatum</p>
       <p class="mat-cell col-xl-2 col-lg-2"></p>
     </div>
 
@@ -31,7 +31,7 @@
       </div>
     </div>
     <mat-paginator
-  [pageSize]="4"
+  [pageSize]="2"
   [length]="storeService.childrenTotalCount"
   (page)="selectPage($event.pageIndex + 1)"
 ></mat-paginator>
